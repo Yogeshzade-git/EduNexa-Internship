@@ -25,7 +25,7 @@ export default function EditUser() {
       setUser(result.data);
     };
     loaduser();
-  },);
+  },[]);
 
   const onSubmit = async (e) => {
     e.preventDefault();

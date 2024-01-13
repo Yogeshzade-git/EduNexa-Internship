@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import axios from "axios";
+import user_img from '../images/user2.png'
+import './ViewUser.css'
 
 export default function ViewUser() {
   const [user, setUser] = useState({
@@ -22,34 +24,20 @@ export default function ViewUser() {
   
 
   return (
-    <div className="container mt-5">
-      <div className="row">
-        <div className="col-md-6 offset-md-3 border rounded p-4 mt shadow">
-          <h2 className="text-center m-4">USER DETAILS</h2>
-          <div className="card">
-            <div className="card-header">
-              User id : {user.id}
-              <ul className="list-group list-group-flush">
-                <li className="list-group-item">
-                  <b>Name: </b>
-                  {user.name}
-                </li>
-                <li className="list-group-item">
-                  <b>UserName: </b>
-                  {user.username}
-                </li>
-                <li className="list-group-item">
-                  <b>Email: </b>
-                  {user.email}
-                </li>
-              </ul>
-            </div>
-          </div>
-          <Link className="btn btn-primary my-2" to={"/"}>
-            Home
-          </Link>
+    <div class="wrapper">
+    <div class="user-card">
+        <div class="user-card-img">
+          <img src={user_img} alt=''/>
         </div>
-      </div>
+        <div class="user-card-info">
+          <h2>{user.name}</h2>
+          <p><span>UserName :</span>{user.username}</p>
+          <p><span>Email :</span>{user.email}</p>
+          <p><span>Mobile No :</span>xxxxx-xxxxx</p>
+          <p id="last-about"><span>About :</span>The database user registered here.</p>
+          <Link className="link-btn-1" to={"/"}>Back</Link>
+        </div>
     </div>
+</div>
   );
 }
