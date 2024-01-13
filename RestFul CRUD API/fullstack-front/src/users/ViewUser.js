@@ -12,13 +12,14 @@ export default function ViewUser() {
   const { id } = useParams();
 
   useEffect(() => {
-    loaduser();
-  }, []);
-
-  const loaduser = async () => {
+    const loaduser = async () => {
     const result = await axios.get(`http://localhost:8090/user/${id}`);
     setUser(result.data);
   };
+    loaduser();
+  }, []);
+
+  
 
   return (
     <div className="container mt-5">

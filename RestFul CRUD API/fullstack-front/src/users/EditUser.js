@@ -5,7 +5,7 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 export default function EditUser() {
   let navigate = useNavigate();
 
-  const {id}=useParams()
+  const { id } = useParams();
 
   const [user, setUser] = useState({
     name: "",
@@ -19,20 +19,19 @@ export default function EditUser() {
     setUser({ ...user, [e.target.name]: e.target.value });
   };
 
-  useEffect(()=>{
-    loaduser()
-  }, [])
+  useEffect(() => {
+    const loaduser = async () => {
+      const result = await axios.get(`http://localhost:8090/user/${id}`);
+      setUser(result.data);
+    };
+    loaduser();
+  },);
 
   const onSubmit = async (e) => {
     e.preventDefault();
     await axios.put(`http://localhost:8090/user/${id}`, user);
     navigate("/");
   };
-
-  const loaduser = async ()=>{
-    const result= await axios.get(`http://localhost:8090/user/${id}`)
-    setUser(result.data)
-  }
 
   return (
     <div className="container mt-5">
