@@ -1,1 +1,1 @@
-![alt text](i.jpg)
+![alt text](./1.jpg)
