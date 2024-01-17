@@ -2,11 +2,15 @@ package com.yogesh.RegisterLoginAuth.EmpController;
 
 import com.yogesh.RegisterLoginAuth.Dto.EmployeeDTO;
 import com.yogesh.RegisterLoginAuth.Dto.LoginDTO;
+import com.yogesh.RegisterLoginAuth.Entity.Employee;
+import com.yogesh.RegisterLoginAuth.Repo.EmployeeRepo;
 import com.yogesh.RegisterLoginAuth.Service.EmployeeService;
 import com.yogesh.RegisterLoginAuth.response.LoginResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @CrossOrigin
@@ -26,5 +30,16 @@ public class EmpController {
     public ResponseEntity<?> loginEmployee(@RequestBody LoginDTO loginDTO){
         LoginResponse loginResponse = employeeService.loginEmployee(loginDTO);
         return ResponseEntity.ok(loginResponse);
+    }
+
+    @Autowired
+    private EmployeeRepo employeeRepo;
+
+    @GetMapping("/employees")
+    List<Employee> getAllEmployees(){return employeeRepo.findAll();}
+
+    @GetMapping("/welcome")
+    public String welcome(){
+        return "Hello Buddy Welcome Back!!";
     }
 }

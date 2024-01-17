@@ -6,11 +6,16 @@ import com.yogesh.RegisterLoginAuth.Entity.Employee;
 import com.yogesh.RegisterLoginAuth.Repo.EmployeeRepo;
 import com.yogesh.RegisterLoginAuth.Service.EmployeeService;
 import com.yogesh.RegisterLoginAuth.response.LoginResponse;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
+@Service
 public class EmployeeIMPL implements EmployeeService {
 
     @Autowired
@@ -59,6 +64,20 @@ public class EmployeeIMPL implements EmployeeService {
             return new LoginResponse("Email Doesn't Exists!!!", false);
         }
 
+    }
+
+    @Autowired
+    private ModelMapper modelMapper;
+
+    @Override
+    public List<EmployeeDTO> getAllEmployee(){
+        List<Employee> employeeList = employeeRepo.findAll();
+        List<EmployeeDTO> employeeDTOList = new ArrayList<>();
+        for(Employee emp:employeeList){
+            EmployeeDTO employeeDTO = modelMapper.map(emp,EmployeeDTO.class);
+            employeeDTOList.add(employeeDTO);
+        }
+        return employeeDTOList;
     }
 
 
