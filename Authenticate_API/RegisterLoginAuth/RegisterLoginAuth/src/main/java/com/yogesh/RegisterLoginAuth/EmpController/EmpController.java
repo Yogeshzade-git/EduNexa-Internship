@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@CrossOrigin
+@CrossOrigin("http://localhost:3000")
 @RequestMapping("api/v1/employee")
 
 public class EmpController {
@@ -35,7 +35,7 @@ public class EmpController {
     @Autowired
     private EmployeeRepo employeeRepo;
 
-    @GetMapping("/employees")
+    @GetMapping("/allemp")
     List<Employee> getAllEmployees(){return employeeRepo.findAll();}
 
     @GetMapping("/welcome")
