@@ -74,6 +74,7 @@ function Login() {
             progress: undefined,
             transition: Zoom
           });
+          window.location.href = "https://monkeytype.com/";
          } else {
            setEmail("");
            setPassword("");
@@ -137,7 +138,7 @@ function Login() {
             />
           </div>
           <div className="button-group">
-            <button type="submit" className="login-button">
+            <button type="submit" className="login-button" onClick={handleSubmit}>
               Login
             </button>
             <button type="button" className="cancel-button" onClick={handleCancel}>

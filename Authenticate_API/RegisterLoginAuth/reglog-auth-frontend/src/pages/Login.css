@@ -4,6 +4,7 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+    
   }
   
   .container {
@@ -11,9 +12,9 @@
     align-items: center;
     justify-content: center;
     height: 100vh;
-    width: 100vw;
+    
     margin: 0 auto; 
-    background: linear-gradient(to right, #a454f5, #01156c);
+    /* background: linear-gradient(to right, #a454f5, #01156c); */
   }
   
   .form {
@@ -77,11 +78,13 @@
   .login-button {
     color: rgb(64, 63, 63);
     background: #fff;
+    cursor: pointer;
   }
   
   .cancel-button {
     color: #b8c2f0;
     background: transparent;
+    cursor: pointer;
   }
   
   @media (max-width: 480px) {
@@ -107,6 +110,7 @@
     }
   
     .button-group button {
+      cursor: pointer;
       height: 30px;
       font-size: 14px;
     }
