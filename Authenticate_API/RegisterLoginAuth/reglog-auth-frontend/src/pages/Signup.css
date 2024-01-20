@@ -1,0 +1,58 @@
+body {
+    /* background-image: url('background.jpg'); Add your image URL
+    background-size: cover; */
+    box-sizing: border-box;
+    display: flexbox;
+}
+
+.signup-form {
+    max-width: 400px;
+    margin: auto;
+    justify-content: center;
+    margin-top: 10%;
+    background-color: white;
+    padding: 20px;
+}
+
+.signup-form h2 {
+    text-align: center;
+}
+
+.signup-form input[type=text],
+.signup-form input[type=email],
+.signup-form input[type=password] {
+    width: calc(100% - 20px);
+    padding: 10px;
+    margin-bottom: 20px;
+}
+
+.signup-form a {
+   display:block; 
+   margin-bottom :20px; 
+   color :blue; 
+   text-decoration: none;
+}
+
+.already-reg{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.signup-form button {
+   padding :10px; 
+   width: 40%;
+   font-family: Verdana, Geneva, Tahoma, sans-serif;
+   cursor: pointer;
+   font-weight: bold;
+   color: #4547c0;
+   background-color: white;
+   border-radius: 6px;
+   border-color: #4547c0;
+}
+
+.signup-form button:hover{
+    color: white;
+    background-color: #4547c0;
+}
+

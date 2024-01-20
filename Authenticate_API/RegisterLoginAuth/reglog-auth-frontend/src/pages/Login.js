@@ -2,13 +2,14 @@ import { Zoom, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import React, { useState } from "react";
 import "./Login.css";
+import { Link} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function Login() {
-  // state variables for email and password
+ 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  // handle change events for email and password inputs
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
   };
@@ -17,20 +18,19 @@ function Login() {
     setPassword(e.target.value);
   };
 
-  // handle submit event for login button
+  const navigate = useNavigate();
+
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    // perform login logic here
-    // alert(`Email: ${email}, Password: ${password}`);
-
-    // create an object with the email and password values
+   
     const data = {
       email: email,
       password: password
     };
 
-    // use the fetch method to send a POST request to the API endpoint
-    // replace the URL with your actual API endpoint
+
+    
     fetch("http://localhost:8090/api/v1/employee/login", {
       method: "POST",
       headers: {
@@ -44,14 +44,12 @@ function Login() {
           // parse the response as JSON
           return response.json();
         } else {
-          // throw an error if the response is not ok
+         
           throw new Error(`Status: ${response.status}, ${response.statusText}`);
         }
       })
       .then((data) => {
-        // handle the data from the API
-        // for example, you can store the token or the user information in the local storage or the state
-        // or you can redirect the user to another page
+     
         console.log(data);
 
          // access the message and the status properties from the data object
@@ -59,11 +57,16 @@ function Login() {
          const status = data.status;
  
          // perform different operations depending on the value of the status
-         if (status) {
-           // if the status is true, it means the login was successful
-           // you can display a success message or a notification to the user
-           // you can also store the token or the user information in the local storage or the state
-           // or you can redirect the user to another page
+         if ( email === "admin@gmail.com" && password === "admin123") {
+        
+          toast.success("Admin Logged in", {
+          
+          });
+  
+          
+          navigate("/admin");
+        } else if (status) {
+     
            toast.success(message, {
             position: "top-center",
             autoClose: 1800,
@@ -74,7 +77,8 @@ function Login() {
             progress: undefined,
             transition: Zoom
           });
-          window.location.href = "https://monkeytype.com/";
+          
+          navigate("/successlogin");
          } else {
            setEmail("");
            setPassword("");
@@ -96,19 +100,13 @@ function Login() {
       });
   };
 
-  // handle click event for cancel button
+
   const handleCancel = () => {
     setEmail("");
     setPassword("");
   };
 
-  const handleSignUp = () => {
-    // perform the logic for signing up a new user
-    // for example, you can redirect the user to another page or show a modal form
-    // or you can use the fetch method or a similar library to send a request to your API
-    // you should also handle the response and the possible errors from the API
-    // you can also use the toast method or a similar library to show a notification or a toast message
-  };
+ 
 
   return (
     <div className="container">
@@ -146,7 +144,7 @@ function Login() {
             </button>
           </div>
           <div className="sign-up-wrapper">
-            <p>Don't have an account? <a href="#" onClick={handleSignUp}>Sign up</a></p>
+            <p>Don't have an account? <Link to="/signup">Sign up</Link></p>
           </div>
         </form>
       </div>
